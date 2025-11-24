@@ -5,9 +5,17 @@
 <template>
   <!-- 以及路由出口 -->
   <RouterView></RouterView>
+  <div class="test">
+    test scss
+  </div>
 </template>
 
-<style scoped>
+<!-- 使用scss样式需要在style里写lang="scss"s -->
+<style scoped lang="scss">
+.test{
+  color: $priceColor;
+}
+
 header {
   line-height: 1.5;
   max-height: 100vh;
