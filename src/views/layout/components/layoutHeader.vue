@@ -2,7 +2,7 @@
 import { getCategoryAPI } from '@/apis/layout';
 import { onMounted } from 'vue';
 import { ref } from 'vue';
-
+//一级导航
 const categoryList = ref([])
 const getCategory = async () =>{
     const res = await getCategoryAPI()
@@ -54,7 +54,7 @@ onMounted(()=>{
       height: 132px;
       width: 100%;
       text-indent: -9999px;
-      background: url('@/assets/images/自定义logo.png') no-repeat center 18px / contain;
+      background: url('@/assets/images/logo.png') no-repeat center 18px / contain;
     }
   }
 
