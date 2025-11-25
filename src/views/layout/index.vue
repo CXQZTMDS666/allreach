@@ -18,6 +18,8 @@ onMounted(() => categoryStore.getCategory())
   <layoutFixed />
   <layoutNav />
   <layoutHeader />
-  <RouterView />
+  <!-- 添加key 破坏复用机制 强制销毁重建 但是会销毁整个页面，包括不需要更改的-->
+  <!-- <RouterView :key="$route.fullPath"/> -->
+   <RouterView/>
   <layoutFooter />
 </template>

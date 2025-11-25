@@ -1,21 +1,27 @@
 <script setup>
 import { getTopCategoryAPI } from '@/apis/layout';
 import { onMounted, onUpdated, ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { onBeforeRouteUpdate, useRoute } from 'vue-router';
 import { getBannerAPI } from '@/apis/layout';
 import goodsItem from '../home/components/goodsItem.vue';
 
 //获取数据
 const categoryData = ref({})
 const route = useRoute()
-const getCategory = async () => {
+//如果没有传值则使用初始参数
+const getCategory = async (id=route.params.id) => {
   //因为需要传入id值，而id值也存在于路由里，因此直接获取路由参数得到id值
-  const res = await getTopCategoryAPI(route.params.id)
+  const res = await getTopCategoryAPI(id)
   categoryData.value = res.result
 }
 onMounted(() =>getCategory())
-//点击后路由更新，同时更新面包屑显示
-onUpdated(() =>getCategory())
+
+//目标：路由参数变化的时候 可以把分类接口数据重新发送
+onBeforeRouteUpdate((to) =>{
+  console.log(to);
+  getCategory(to.params.id)
+  
+})
 
 //获取banner
 const bannerList = ref([])
