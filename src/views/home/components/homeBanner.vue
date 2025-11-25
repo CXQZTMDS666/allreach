@@ -1,5 +1,5 @@
 <script setup>
-import { getBannerAPI } from '@/apis/home';
+import { getBannerAPI } from '@/apis/layout';
 import { onMounted, ref } from 'vue';
 
 const bannerList = ref([])
