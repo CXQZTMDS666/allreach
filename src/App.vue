@@ -5,9 +5,7 @@
 <template>
   <!-- 以及路由出口 -->
   <RouterView></RouterView>
-  <div class="test">
-    test scss
-  </div>
+
 </template>
 
 <!-- 使用scss样式需要在style里写lang="scss"s -->

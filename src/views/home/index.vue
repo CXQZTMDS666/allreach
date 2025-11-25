@@ -1,12 +1,20 @@
-<template>
-  <div>我是home页</div>
-</template>
-
-<script>
-export default {
-
-}
+<script setup>
+import homeCategory from './components/homeCategory.vue'
+import homeBanner from './components/homeBanner.vue'
+import homeNew from './components/homeNew.vue'
+import homeHot from './components/homeHot.vue'
+import homeProduct from './components/homeProduct.vue'
 </script>
+
+<template>
+  <div class="container">
+    <homeCategory />
+    <homeBanner />
+  </div>
+  <homeNew />
+  <homeHot />
+  <homeProduct />
+</template>
 
 <style>
 
