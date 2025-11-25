@@ -1,15 +1,12 @@
-<template>
-  <div>我是首页</div>
-  <!-- 二级路由出口 -->
-   <RouterView></RouterView>
-</template>
-
-<script>
-export default {
-
-}
+<script setup>
+  import layoutNav from './components/layoutNav.vue'
+  import layoutHeader from './components/layoutHeader.vue'
+  import layoutFooter from './components/layoutFooter.vue'
 </script>
 
-<style>
-
-</style>
+<template>
+  <layoutNav />
+  <layoutHeader />
+  <RouterView />
+  <layoutFooter />
+</template>
