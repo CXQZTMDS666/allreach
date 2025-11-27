@@ -1,7 +1,8 @@
 <script setup>
-import { getCategoryFilterAPI } from '@/apis/layout';
+import { getCategoryFilterAPI ,getSubCategoryAPI} from '@/apis/layout';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import goodsItem from '../home/components/goodsItem.vue';
 //获取面包屑导航数据  这个页面是在商品大分类里的小分类点击后显示的页面
 const categoryData = ref({})
 const route = useRoute()
@@ -13,6 +14,20 @@ const getCategoryData = async () =>{
 }
 onMounted(() => getCategoryData())
 
+//获取基础列表数据渲染
+const goodList = ref([])
+const reqData = ref({
+  categoryId:route.params.id,
+    page: 1,
+    pageSize: 20,
+    sortField:'publishTime'
+})
+const getGoodList = async () =>{
+  const res = await getSubCategoryAPI(reqData.value)
+  console.log(res);
+  goodList.value = res.result.items
+}
+onMounted(() => getGoodList())
 </script>
 
 <template>
@@ -33,7 +48,8 @@ onMounted(() => getCategoryData())
         <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
       </el-tabs>
       <div class="body">
-         <!-- 商品列表-->
+         <!-- 商品列表  :子组件对象=“父组件传参”-->
+        <goodsItem v-for="goods in goodList" :good="goods" :key="goods.id"></goodsItem>
       </div>
     </div>
   </div>
