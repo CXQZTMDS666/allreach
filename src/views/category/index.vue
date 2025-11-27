@@ -3,10 +3,11 @@ import goodsItem from '../home/components/goodsItem.vue';
 import { useBanner } from './composables/useBanner';
 import { useCategory } from './composables/useCategory';
 
+
 const {bannerList} = useBanner()
 const {categoryData} = useCategory()
 
-
+//这个页面是点击tab栏商品大分类后显示的页面
 
 
 </script>

@@ -24,6 +24,7 @@ const router = createRouter({
           path:'category/:id',
           component:category
         },
+        //商品大分类里的小分类的路由
         {
           path:'category/sub/:id',
           component:subCategory
