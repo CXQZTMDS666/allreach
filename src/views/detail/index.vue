@@ -120,9 +120,9 @@ onMounted(()=>getGoods())
             <!-- 24热榜+专题推荐 -->
             <div class="goods-aside">
               <!-- 24小时 -->
-              <detailHot></detailHot>
+              <detailHot :hotType="1"></detailHot>
               <!-- 周 -->
-              <detailHot></detailHot>
+              <detailHot :hotType="2"></detailHot>
             </div>
           </div>
         </div>
