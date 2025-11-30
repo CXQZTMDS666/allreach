@@ -3,8 +3,7 @@ import { getDetail } from '@/apis/layout';
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import detailHot from '@/views/detail/components/detailHot.vue'
-import imageView from '@/components/imageview/index.vue'
-import NdtSku from '@/components/NdtSku/index.vue'
+
 
 const goods = ref({})
 const route = useRoute()
@@ -92,7 +91,7 @@ const ndtChange = (sku) =>{
                 </dl>
               </div>
               <!-- sku组件 -->
-              <NdtSku :goods="goods" @change="ndtChange"></NdtSku>
+              <ndtSku :goods="goods" @change="ndtChange"></ndtSku>
               <!-- 数据组件 -->
 
               <!-- 按钮组件 -->
