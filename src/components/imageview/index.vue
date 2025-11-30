@@ -26,7 +26,12 @@ const {elementX,elementY,isOutside} = useMouseInElement(target)
 const left = ref(0)
 const top = ref(0)
 const mousePlace = ref(isOutside)
-watch([elementX,elementY],() => {
+//大图坐标
+const positionX = ref(0)
+const positionY = ref(0)
+watch([elementX,elementY,isOutside],() => {
+//监听鼠标是否移入盒子，没移入则不运行
+  if(isOutside.value) return
   //横向
   if(elementX.value > 100 && elementX.value < 300){
     left.value = elementX.value - 100
@@ -49,6 +54,10 @@ watch([elementX,elementY],() => {
     if(elementY.value < 100){
     top.value = 0
   }
+
+  //控制大图显示
+  positionX.value = -left.value * 2
+  positionY.value = -top.value * 2
 })
 </script>
 
@@ -71,10 +80,10 @@ watch([elementX,elementY],() => {
     <div class="large" :style="[
       {
         backgroundImage: `url(${imageList[0]})`,
-        backgroundPositionX: `0px`,
-        backgroundPositionY: `0px`,
+        backgroundPositionX: `${positionX}px`,
+        backgroundPositionY: `${positionY}px`,
       },
-    ]" v-show="false"></div>
+    ]" v-show="!mousePlace"></div>
   </div>
 </template>
 
