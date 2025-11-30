@@ -8,6 +8,8 @@ const newList = ref([])
 const getNewList = async () =>{
     const res = await findNewAPI()
     newList.value = res.result
+    console.log(res);
+
 }
 onMounted(() =>getNewList())
 </script>
