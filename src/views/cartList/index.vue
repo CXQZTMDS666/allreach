@@ -2,6 +2,12 @@
 import { useCartStore } from '@/stores/cartStore';
 
 const cartStore = useCartStore()
+
+//单选回调
+const singleCheck = (i,selected) =>{
+  console.log(i,selected);
+  cartStore.singleCheck(i.skuId,selected)
+}
 </script>
 
 <template>
@@ -25,7 +31,8 @@ const cartStore = useCartStore()
           <tbody>
             <tr v-for="i in cartStore.cartList" :key="i.id">
               <td>
-                <el-checkbox />
+                <!-- 单选框 change使用箭头函数是为了传递而外的参数，并确保在事件触发时才执行、而不是在页面加载时执行-->
+                <el-checkbox :model-value="i.selectd" @change="(selected)=>singleCheck(i,selected)"/>
               </td>
               <td>
                 <div class="goods">
