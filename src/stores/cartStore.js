@@ -42,13 +42,23 @@ export const useCartStore = defineStore('cart',()=>{
   //2.总价
   const allPrice = computed(() => cartList.value.reduce((a,c) => a+c.count * c.price,0))
 
+  //是否全选
+  const isAll = computed(() => cartList.value.every((item) =>item.selectd))
+
+  //全选功能
+  const allCheck = (selected) =>{
+    cartList.value.forEach(item => item.selectd = selected)
+  }
+
   return {
     cartList,
     addCart,
     delCart,
     allCount,
     allPrice,
-    singleCheck
+    singleCheck,
+    isAll,
+    allCheck
   }
 },{
   persist:true
