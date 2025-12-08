@@ -11,6 +11,7 @@ import detail from '@/views/detail/index.vue'
 import cartList from '@/views/cartList/index.vue'
 import checkOut from '@/views/checkOut/index.vue'
 import pay from '@/views/pay/index.vue'
+import payBack from '@/views/pay/payBack.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -52,6 +53,11 @@ const router = createRouter({
         {
           path:'pay',
           component:pay
+        },
+        //支付成功页面
+        {
+          path:'paycallback',
+          component:payBack
         }
       ]
     },
