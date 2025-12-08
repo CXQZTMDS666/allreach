@@ -10,6 +10,7 @@ import subCategory from '@/views/subCategory/index.vue'
 import detail from '@/views/detail/index.vue'
 import cartList from '@/views/cartList/index.vue'
 import checkOut from '@/views/checkOut/index.vue'
+import pay from '@/views/pay/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -37,15 +38,20 @@ const router = createRouter({
           path:'detail/:id',
           component:detail
         },
-        //商品结算页面
+        //商品总结页面
         {
           path:'cartlist',
           component:cartList
         },
-        //支付页面
+        //结算页面
         {
           path:'checkout',
           component:checkOut
+        },
+        //支付页面
+        {
+          path:'pay',
+          component:pay
         }
       ]
     },
