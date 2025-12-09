@@ -9,7 +9,7 @@ const route = useRoute()
 const getCategoryData = async () =>{
   const res = await getCategoryFilterAPI(route.params.id)
   categoryData.value = res.result
-  console.log(res);
+  // console.log(res);
 
 }
 onMounted(() => getCategoryData())
@@ -24,14 +24,14 @@ const reqData = ref({
 })
 const getGoodList = async () =>{
   const res = await getSubCategoryAPI(reqData.value)
-  console.log(res);
+  // console.log(res);
   goodList.value = res.result.items
 }
 onMounted(() => getGoodList())
 
 //tab切换回调
 const tabChange = () =>{
-  console.log('tab切换了',reqData.value.sortField);
+  // console.log('tab切换了',reqData.value.sortField);
   //初始化页数为1，防止浏览记录互相污染
   //后台数据没有单独做，三个类别数据无差别
   reqData.value.page = 1
@@ -41,7 +41,7 @@ const tabChange = () =>{
 //加载更多
 const disabled = ref(false)
 const load = async () =>{
-  console.log("加载更多");
+  // console.log("加载更多");
   //获取下一页数据
   reqData.value.page++
   const res = await getSubCategoryAPI(reqData.value)

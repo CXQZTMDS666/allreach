@@ -5,7 +5,7 @@ const cartStore = useCartStore()
 
 //单选回调
 const singleCheck = (i,selected) =>{
-  console.log(i,selected);
+  // console.log(i,selected);
   cartStore.singleCheck(i.skuId,selected)
 }
 

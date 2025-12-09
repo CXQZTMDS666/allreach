@@ -29,7 +29,7 @@ const rules = {
   agree:[
     {
       validator:(rule,value,callback) =>{
-        console.log(value);
+        // console.log(value);
         //自定义校验逻辑
         //勾选就通过，不勾选就不通过
         if(value === true){
@@ -51,7 +51,7 @@ const doLogin =()=>{
   formRef.value.validate(async (valid) =>{
     const {account,password} = form.value
     //valid：所有表单都通过校验 才为true
-    console.log(valid);
+    // console.log(valid);
     //以valid作为判断条件 如果通过校验才进行登录逻辑
     if(valid){
       await userStore.getUserInfo(account,password)
