@@ -14,7 +14,7 @@ const userStore = useUserStore()
 const form = ref({
   account:'xiaotuxian001',
   password:'123456',
-  agree:false
+  agree:true
 })
 
 //2、准备规则对象
