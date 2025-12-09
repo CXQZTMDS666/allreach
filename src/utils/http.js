@@ -6,7 +6,7 @@ import router from "@/router";
 import 'element-plus/theme-chalk/el-message.css'
 
 const httpInstance = axios.create({
-    baseURL:'http://pcapi-xiaotuxian-front-devtest.itheima.net',
+    baseURL:'https://pcapi-xiaotuxian-front-devtest.itheima.net',
     timeout:20000
 })
 
