@@ -50,7 +50,7 @@ const tabChange = (type) =>{
 
 //页数切换
 const pageChange = (page) =>{
-  // console.log(page);
+
   params.value.page = page
   getOrderList()
 }

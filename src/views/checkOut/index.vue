@@ -11,7 +11,7 @@ const curAddress = ref({}) // 地址对象
 const getCheckInfo = async () =>{
   const res = await getCheckInfoAPI()
   checkInfo.value = res.result
-  // console.log(checkInfo.value);
+
 
   //适配默认地址
   //从地址列表中筛选出来 isDefault === 0 那一项

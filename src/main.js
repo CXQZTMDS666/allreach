@@ -10,7 +10,7 @@ import router from './router'
 // //测试接口函数
 // import {getCategory} from '@/apis/testAPI'
 // getCategory().then(res=>{
-//     console.log(res);
+
 
 // })
 //引入懒加载指令插件并且注册
