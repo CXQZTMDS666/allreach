@@ -1,21 +1,27 @@
 <script setup>
 import { useCategoryStore } from '@/stores/category';
+import { useRouter } from 'vue-router';
 
-const categoryStore = useCategoryStore()
+const categoryStore = useCategoryStore();
+const router = useRouter();
+
+function goCategory(id) {
+  router.push(`/category/${id}`);
+}
 </script>
 
 <template>
   <div class="home-category">
     <ul class="menu">
-      <li v-for="item in categoryStore.categoryList" :key="item.id">
-        <RouterLink to="/">{{ item.name }}</RouterLink>
-        <RouterLink v-for="i in item.children.slice(0,2)" :key="i" to="/">{{ i.name }}</RouterLink>
+      <li v-for="item in categoryStore.categoryList" :key="item.id" @click="goCategory(item.id)" >
+        <RouterLink :to="`/category/${item.id}`" >{{ item.name }}</RouterLink>
+        <RouterLink v-for="i in item.children.slice(0,2)" :key="i" to="/" >{{ i.name }}</RouterLink>
         <!-- 弹层layer位置 -->
-        <div class="layer">
+        <div class="layer" @click.stop>
           <h4>分类推荐 <small>根据您的购买或浏览记录推荐</small></h4>
           <ul>
             <li v-for="i in item.goods" :key="i">
-              <RouterLink to="/">
+              <RouterLink :to="`detail/${i.id}`">
                 <img :src="i.picture" alt="" />
                 <div class="info">
                   <p class="name ellipsis-2">

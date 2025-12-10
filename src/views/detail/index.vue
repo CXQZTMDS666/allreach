@@ -61,7 +61,7 @@ const addCart = () =>{
           <!-- goods一开始是空对象，直接goods.categories[1].id会报错 -->
           <el-breadcrumb-item :to="{ path: `/category/${goods.categories[1].id}` }">{{goods.categories[1].name  }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: `/category/sub${goods.categories[0].id}` }">{{ goods.categories[0].name }}
+          <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories[0].id}` }">{{ goods.categories[0].name }}
           </el-breadcrumb-item>
           <el-breadcrumb-item>{{ goods.name }}</el-breadcrumb-item>
         </el-breadcrumb>

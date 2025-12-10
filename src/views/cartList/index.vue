@@ -1,7 +1,10 @@
 <script setup>
 import { useCartStore } from '@/stores/cartStore';
+import { onMounted } from 'vue';
+import { useRouter } from 'vue-router';
 
 const cartStore = useCartStore()
+const router = useRouter()
 
 //单选回调
 const singleCheck = (i,selected) =>{
@@ -12,6 +15,18 @@ const singleCheck = (i,selected) =>{
 const allCheck=(selected) =>{
   cartStore.allCheck(selected)
 }
+
+const checkList = async () =>{
+  try{
+    await cartStore.checkoutList()
+    //使用路由跳转到结算页面，确保 checkoutList 完成后再跳转
+    router.push('/checkout')
+  }catch(err){
+    console.error('checkout failed:', err)
+  }
+}
+
+onMounted(()=>console.log(cartStore.cartList))
 </script>
 
 <template>
@@ -71,7 +86,7 @@ const allCheck=(selected) =>{
               <td colspan="6">
                 <div class="cart-none">
                   <el-empty description="购物车列表为空">
-                    <el-button type="primary">随便逛逛</el-button>
+                    <el-button type="primary" @click="router.push('/')">随便逛逛</el-button>
                   </el-empty>
                 </div>
               </td>
@@ -87,7 +102,7 @@ const allCheck=(selected) =>{
           <span class="red">¥ {{ cartStore.selectedPrice.toFixed(2) }} </span>
         </div>
         <div class="total">
-          <el-button size="large" type="primary" @click="$router.push('/checkout')">下单结算</el-button>
+          <el-button size="large" type="primary" @click="checkList()">下单结算</el-button>
         </div>
       </div>
     </div>

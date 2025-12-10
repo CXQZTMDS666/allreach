@@ -44,14 +44,14 @@ export const useCartStore = defineStore('cart',()=>{
 
   //删除购物车
   const delCart = async (skuId) =>{
+    const idsToDelete = Array.isArray(skuId) ? skuId : [skuId];
     if(isLogin.value){
       //调用删除功能
-      await delCartAPI([skuId])
+      await delCartAPI(idsToDelete)
       updateNewList()
     }else{
       //思路：1.找到要删除项的下标值 splice / 使用数组的过滤方法 filter
-      const idx = cartList.value.findIndex((item) =>skuId === item.skuId)
-      cartList.value.splice(idx,1)
+      cartList.value = cartList.value.filter(item => !idsToDelete.includes(item.skuId));
     }
 
   }
@@ -86,6 +86,18 @@ export const useCartStore = defineStore('cart',()=>{
   const clearCart = () =>{
     cartList.value = []
   }
+
+  //点击下单结算后过滤出selected为false的商品,调用删除购物车接口删除
+  // const checkoutList = async () =>{
+  //   if(isLogin.value){
+
+  //   }
+  // }
+
+  // async function checkoutList() {
+  //   cartList.value = cartList.value.filter(item => item.selectd);
+  // }
+
   return {
     cartList,
     addCart,
@@ -98,7 +110,8 @@ export const useCartStore = defineStore('cart',()=>{
     selectedCount,
     selectedPrice,
     clearCart,
-    updateNewList
+    updateNewList,
+    // checkoutList
   }
 },{
   persist:true

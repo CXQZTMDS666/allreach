@@ -7,9 +7,10 @@ import goodsItem from './goodsItem.vue';
 const goodsList = ref([])
 const getGoodsList = async () =>{
     const res = await getGoodsAPI()
-
     goodsList.value = res.result
+
 }
+
 onMounted(() =>getGoodsList())
 </script>
 
@@ -17,7 +18,7 @@ onMounted(() =>getGoodsList())
   <div class="home-product">
     <homePanel :title="cate.name" v-for="cate in goodsList" :key="cate.id">
       <div class="box">
-        <RouterLink class="cover" to="/">
+        <RouterLink class="cover" :to="`/category/${cate.id}`">
           <img v-img-lazy="cate.picture" />
           <strong class="label">
             <span>{{ cate.name }}馆</span>
