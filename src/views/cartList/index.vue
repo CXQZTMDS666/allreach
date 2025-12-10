@@ -19,7 +19,7 @@ const allCheck=(selected) =>{
 const checkList = async () =>{
   try{
     await cartStore.checkoutList()
-    //使用路由跳转到结算页面，确保 checkoutList 完成后再跳转
+    //使用路由跳转到结算页面，确保 checkoutList 完成后再跳
     router.push('/checkout')
   }catch(err){
     console.error('checkout failed:', err)
