@@ -60,7 +60,7 @@ export const useCartStore = defineStore('cart',()=>{
   const singleCheck =(skuId,selected) =>{
     //通过skuId找到要修改的那一项，把他的selected修改
     const item = cartList.value.find((item) =>item.skuId === skuId)
-    item.selectd = selected
+    item.selected = selected
   }
 
   //计算属性
@@ -70,17 +70,17 @@ export const useCartStore = defineStore('cart',()=>{
   const allPrice = computed(() => cartList.value.reduce((a,c) => a+c.count * c.price,0))
 
   //是否全选
-  const isAll = computed(() => cartList.value.every((item) =>item.selectd))
+  const isAll = computed(() => cartList.value.every((item) =>item.selected))
 
   //全选功能
   const allCheck = (selected) =>{
-    cartList.value.forEach(item => item.selectd = selected)
+    cartList.value.forEach(item => item.selected = selected)
   }
 
   //已选择数量
-  const selectedCount = computed(() => cartList.value.filter(item => item.selectd).reduce((a,c) =>a + c.count ,0))
+  const selectedCount = computed(() => cartList.value.filter(item => item.selected).reduce((a,c) =>a + c.count ,0))
   //已选择商品价钱合计
-  const selectedPrice = computed(() => cartList.value.filter(item => item.selectd).reduce((a,c) =>a + c.count * c.price ,0))
+  const selectedPrice = computed(() => cartList.value.filter(item => item.selected).reduce((a,c) =>a + c.count * c.price ,0))
 
   //清除购物车
   const clearCart = () =>{
@@ -88,15 +88,16 @@ export const useCartStore = defineStore('cart',()=>{
   }
 
   //点击下单结算后过滤出selected为false的商品,调用删除购物车接口删除
-  // const checkoutList = async () =>{
-  //   if(isLogin.value){
+  const checkoutList = async () =>{
+    if(isLogin.value){
+      let skuIds = ref()
+      skuIds = cartList.value.filter(item => item.selected === false).map(item => item.skuId);
+      await delCart(skuIds)
+    }else{
+      cartList.value = cartList.value.filter(item => item.selected === false)
+    }
+  }
 
-  //   }
-  // }
-
-  // async function checkoutList() {
-  //   cartList.value = cartList.value.filter(item => item.selectd);
-  // }
 
   return {
     cartList,
@@ -111,7 +112,7 @@ export const useCartStore = defineStore('cart',()=>{
     selectedPrice,
     clearCart,
     updateNewList,
-    // checkoutList
+    checkoutList
   }
 },{
   persist:true

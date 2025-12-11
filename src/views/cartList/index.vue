@@ -17,13 +17,8 @@ const allCheck=(selected) =>{
 }
 
 const checkList = async () =>{
-  try{
-    await cartStore.checkoutList()
-    //使用路由跳转到结算页面，确保 checkoutList 完成后再跳
-    router.push('/checkout')
-  }catch(err){
-    console.error('checkout failed:', err)
-  }
+  await cartStore.checkoutList()
+  router.push('/checkout')
 }
 
 onMounted(()=>console.log(cartStore.cartList))
@@ -51,7 +46,7 @@ onMounted(()=>console.log(cartStore.cartList))
             <tr v-for="i in cartStore.cartList" :key="i.id">
               <td>
                 <!-- 单选框 change使用箭头函数是为了传递额外的参数，并确保在事件触发时才执行、而不是在页面加载时执行-->
-                <el-checkbox :model-value="i.selectd" @change="(selected)=>singleCheck(i,selected)"/>
+                <el-checkbox :model-value="i.selected" @change="(selected)=>singleCheck(i,selected)"/>
               </td>
               <td>
                 <div class="goods">
@@ -102,7 +97,7 @@ onMounted(()=>console.log(cartStore.cartList))
           <span class="red">¥ {{ cartStore.selectedPrice.toFixed(2) }} </span>
         </div>
         <div class="total">
-          <el-button size="large" type="primary" @click="checkList()">下单结算</el-button>
+          <el-button size="large" type="primary" @click="router.push('./checkout')">下单结算</el-button>
         </div>
       </div>
     </div>

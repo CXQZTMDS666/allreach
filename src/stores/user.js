@@ -17,7 +17,7 @@ export const useUserStore = defineStore('user',()=>{
       await mergeCartAPI(cartStore.cartList.map(item =>{
         return {
           skuId:item.skuId,
-          selected:item.selectd,
+          selected:item.selected,
           count:item.count
         }
 

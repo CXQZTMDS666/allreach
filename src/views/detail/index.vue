@@ -43,7 +43,7 @@ const addCart = () =>{
       count:count.value,
       skuId:skuObj.skuId,
       attrsText:skuObj.specsText,
-      selectd:true
+      selected:true
     })
   }else{
     //规格没有选择 提示用户
